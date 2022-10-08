@@ -1,8 +1,7 @@
 const mongoose = require("mongoose")
+const app = require("./src/server")
 require("dotenv").config()
 
-
-console.log("proccess env", process.env)
 const {
   DB_USERNAME,
   DB_PASSWORD,
@@ -16,6 +15,10 @@ const URL = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
 mongoose.connect(URL)
 .then(() => {
   console.log("conexion exitosa :)")
+
+  app.listen(8080, () => {
+    console.log("app levantada :))")
+  })
 })
 .catch((error) => {
   console.log("hubo un error :)", error)
